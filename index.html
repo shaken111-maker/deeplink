@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    .box {
+      text-align: center;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      max-width: 320px;
+      width: 90%;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #333;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h2 { margin: 0 0 8px; font-size: 18px; color: #111; }
+    p  { margin: 0 0 20px; font-size: 14px; color: #666; }
+    a.btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    a.btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="spinner"></div>
+  <h2>Redirecting…</h2>
+  <p>Opening in your browser</p>
+  <a class="btn" id="manual-btn" href="#" style="display:none">Open manually →</a>
+</div>
+
+<script>
+(function () {
+  // Read the ?to= parameter
+  var params = new URLSearchParams(window.location.search);
+  var dest   = params.get('to');
+
+  if (!dest) {
+    document.querySelector('h2').textContent = 'No destination';
+    document.querySelector('p').textContent  = 'Add ?to=YOUR_URL to this link.';
+    document.querySelector('.spinner').style.display = 'none';
+    return;
+  }
+
+  // Ensure absolute URL
+  if (!/^https?:\/\//i.test(dest)) dest = 'https://' + dest;
+
+  var btn = document.getElementById('manual-btn');
+  btn.href = dest;
+
+  // ---------------------------------------------------
+  // Escape Instagram / Facebook / TikTok in-app browser
+  // These browsers block window.location but allow
+  // intent:// on Android and a JS trick on iOS.
+  // ---------------------------------------------------
+  var ua = navigator.userAgent || '';
+  var isInstagram = /Instagram/i.test(ua);
+  var isFacebook  = /FBAN|FBAV/i.test(ua);
+  var isTikTok    = /musical_ly|TikTok/i.test(ua);
+  var isInApp     = isInstagram || isFacebook || isTikTok;
+
+  var isAndroid = /Android/i.test(ua);
+  var isIOS     = /iPhone|iPad|iPod/i.test(ua);
+
+  function redirect(url) {
+    window.location.replace(url);
+  }
+
+  if (isInApp && isAndroid) {
+    // Android intent URI forces Chrome to open
+    var intentUrl = 'intent://' + dest.replace(/^https?:\/\//i, '') +
+                    '#Intent;scheme=https;package=com.android.chrome;end';
+    redirect(intentUrl);
+    // Fallback after 1.5 s
+    setTimeout(function () { redirect(dest); }, 1500);
+
+  } else if (isInApp && isIOS) {
+    // iOS trick: set location then use a meta-refresh fallback
+    document.querySelector('p').textContent = 'Tap the button below to open in Safari';
+    document.querySelector('.spinner').style.display = 'none';
+    btn.style.display = 'inline-block';
+    btn.textContent   = 'Open in Safari →';
+    // Also try direct redirect (works on some versions)
+    setTimeout(function () { redirect(dest); }, 300);
+
+  } else {
+    // Normal browser — just redirect
+    redirect(dest);
+  }
+
+  // Show manual button as fallback after 2 s for everyone
+  setTimeout(function () {
+    btn.style.display = 'inline-block';
+    btn.textContent   = 'Open link →';
+    document.querySelector('.spinner').style.display = 'none';
+    document.querySelector('p').textContent = 'If you weren\'t redirected, tap below:';
+  }, 2000);
+
+})();
+</script>
+</body>
+</html>
