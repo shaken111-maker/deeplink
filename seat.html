@@ -3,37 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MYJAQI Back Seat Extender for Dogs</title>
+  <title>Back Seat Extender for Dogs</title>
 
-  <!-- Open Graph — Instagram/Facebook preview -->
-  <meta property="og:title"       content="Back Seat Extender for Dogs 🐾">
-  <meta property="og:description" content="Waterproof, hard bottom, holds 400 lbs. Easy to install & clean. Shop on Amazon →">
-  <meta property="og:image"       content="https://images-na.ssl-images-amazon.com/images/P/B0D9Y6X8K8.01.L.jpg">
-  <meta property="og:image:width"  content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:type"        content="product">
-  <meta property="og:url"         content="https://shaken111-maker.github.io/deeplink/seat.html">
+  <!-- Open Graph — Instagram / Facebook / WhatsApp preview -->
+  <meta property="og:title"        content="Back Seat Extender for Dogs 🐾">
+  <meta property="og:description"  content="Waterproof · Hard bottom · Holds 400 lbs · Easy to clean. Shop on Amazon →">
+  <meta property="og:image"        content="https://m.media-amazon.com/images/I/51-7lVW8WOL._SL1000_.jpg">
+  <meta property="og:image:width"  content="1000">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:type"         content="product">
+  <meta property="og:url"          content="https://shaken111-maker.github.io/deeplink/seat.html">
 
   <!-- Twitter card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Back Seat Extender for Dogs 🐾">
-  <meta name="twitter:description" content="Waterproof, hard bottom, holds 400 lbs. Shop on Amazon →">
-  <meta name="twitter:image"       content="https://images-na.ssl-images-amazon.com/images/P/B0D9Y6X8K8.01.L.jpg">
+  <meta name="twitter:description" content="Waterproof · Hard bottom · Holds 400 lbs. Shop on Amazon →">
+  <meta name="twitter:image"       content="https://m.media-amazon.com/images/I/51-7lVW8WOL._SL1000_.jpg">
 
   <script>
+    // Runs before render — fastest possible redirect straight into the Amazon app
     (function () {
-      var dest = 'https://amzn.to/3T13XZn';
+      var asin  = 'B0D9Y6X8K8';
+      var tag   = 'shaken085-20';
+      var https = 'https://www.amazon.com/dp/' + asin + '?tag=' + tag;
+
       var ua = navigator.userAgent || '';
       var isAndroid = /Android/i.test(ua);
-      var isInApp   = /Instagram|FBAN|FBAV|musical_ly|TikTok/i.test(ua);
+      var isIOS     = /iPhone|iPad|iPod/i.test(ua);
 
-      if (isInApp && isAndroid) {
+      if (isAndroid) {
+        // Open the Amazon Shopping app directly; fall back to browser if not installed
         window.location.replace(
-          'intent://' + dest.replace(/^https?:\/\//i, '') +
-          '#Intent;scheme=https;package=com.android.chrome;end'
+          'intent://www.amazon.com/dp/' + asin + '?tag=' + tag +
+          '#Intent;scheme=https;package=com.amazon.mShop.android.shopping;' +
+          'S.browser_fallback_url=' + encodeURIComponent(https) + ';end'
         );
+      } else if (isIOS) {
+        // Amazon app URL scheme; fall back to Safari/https if app is missing
+        window.location.replace('com.amazon.mobile.shopping.web://www.amazon.com/dp/' + asin + '?tag=' + tag);
+        setTimeout(function () { window.location.replace(https); }, 1500);
       } else {
-        window.location.replace(dest);
+        window.location.replace(https);
       }
     })();
   </script>
@@ -44,18 +54,18 @@
       min-height: 100vh; margin: 0; background: #f5f5f5;
     }
     .box {
-      text-align: center; padding: 40px 30px; background: #fff;
+      text-align: center; padding: 36px 28px; background: #fff;
       border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.08);
       max-width: 320px; width: 90%;
     }
     .spinner {
-      width: 36px; height: 36px; border: 3px solid #e0e0e0;
-      border-top-color: #333; border-radius: 50%;
-      animation: spin .8s linear infinite; margin: 0 auto 16px;
+      width: 34px; height: 34px; border: 3px solid #e0e0e0;
+      border-top-color: #FF9900; border-radius: 50%;
+      animation: spin .8s linear infinite; margin: 0 auto 14px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    h2 { margin: 0 0 6px; font-size: 17px; color: #111; }
-    p  { margin: 0 0 18px; font-size: 13px; color: #666; }
+    h2 { margin: 0 0 6px; font-size: 16px; color: #111; }
+    p  { margin: 0 0 16px; font-size: 13px; color: #666; }
     a.btn {
       display: none; padding: 11px 26px; background: #FF9900;
       color: #111; text-decoration: none; border-radius: 8px;
@@ -68,14 +78,14 @@
   <div class="spinner" id="sp"></div>
   <h2>Opening Amazon…</h2>
   <p id="msg">Back Seat Extender for Dogs</p>
-  <a class="btn" id="btn" href="https://amzn.to/3T13XZn">View on Amazon →</a>
+  <a class="btn" id="btn" href="https://www.amazon.com/dp/B0D9Y6X8K8?tag=shaken085-20">View on Amazon →</a>
 </div>
 <script>
   setTimeout(function () {
-    document.getElementById('sp').style.display = 'none';
-    document.getElementById('msg').textContent  = 'Tap below if not redirected:';
+    document.getElementById('sp').style.display  = 'none';
+    document.getElementById('msg').textContent   = 'Tap below if not redirected:';
     document.getElementById('btn').style.display = 'inline-block';
-  }, 1200);
+  }, 1800);
 </script>
 </body>
 </html>
