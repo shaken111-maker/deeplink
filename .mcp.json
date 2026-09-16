@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "voicestudio": {
+      "command": "python",
+      "args": ["-m", "backend.mcp_shim"],
+      "env": {
+        "OMNIVOICE_CLIENT_ID": "claude-code",
+        "OMNIVOICE_HOST": "127.0.0.1",
+        "OMNIVOICE_PORT": "3900"
+      }
+    }
+  }
+}

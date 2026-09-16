@@ -1,0 +1,26 @@
+{
+  "name": "deeplink-voiceover",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion video narrated by VoiceStudio (local TTS / voice cloning)",
+  "type": "module",
+  "scripts": {
+    "synth": "node scripts/synth.mjs",
+    "synth:estimate": "node scripts/synth.mjs --estimate",
+    "studio": "remotion studio",
+    "render": "remotion render Narrated out/narrated.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@remotion/cli": "^4.0.524",
+    "@remotion/media": "^4.0.524",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.524"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^5.9.3"
+  }
+}

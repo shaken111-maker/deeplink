@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-09-16T13:33:20.367Z",
+  "provider": "estimate",
+  "title": "deeplink — обход in-app браузеров",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "totalMs": 24722,
+  "scenes": [
+    {
+      "id": "01-problem",
+      "heading": "Проблема",
+      "text": "Ссылка из Инстаграма открывается во встроенном браузере. Ни автозаполнения, ни сохранённых сессий, ни нормальной оплаты.",
+      "file": null,
+      "estimated": true,
+      "hash": "6518d91a7d61117e",
+      "startMs": 0,
+      "durationMs": 6207,
+      "gapAfterMs": 350
+    },
+    {
+      "id": "02-solution",
+      "heading": "Решение",
+      "text": "deeplink — это страница-посредник. Вы передаёте ей адрес, она сама решает, как открыть его правильно.",
+      "file": null,
+      "estimated": true,
+      "hash": "f3a742b3d6045b0b",
+      "startMs": 6557,
+      "durationMs": 6207,
+      "gapAfterMs": 350
+    },
+    {
+      "id": "03-android",
+      "heading": "Android",
+      "text": "На Андроиде страница формирует intent-ссылку и передаёт управление Хрому. Встроенный браузер закрывается сам.",
+      "file": null,
+      "estimated": true,
+      "hash": "0387cfcba8d83034",
+      "startMs": 13114,
+      "durationMs": 5379,
+      "gapAfterMs": 350
+    },
+    {
+      "id": "04-ios",
+      "heading": "iOS",
+      "text": "На Айфоне подобного механизма нет, поэтому через секунду появляется кнопка — открыть вручную.",
+      "file": null,
+      "estimated": true,
+      "hash": "2cced785dc345406",
+      "startMs": 18843,
+      "durationMs": 5379,
+      "gapAfterMs": 500
+    }
+  ]
+}

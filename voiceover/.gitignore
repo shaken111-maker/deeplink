@@ -1,0 +1,5 @@
+node_modules/
+out/
+# Generated voice clips — rebuilt by `npm run synth`, never reviewed in a diff.
+public/audio/
+narration-assets/
