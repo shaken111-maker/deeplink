@@ -1,0 +1,25 @@
+[
+  {
+    "id": "backpack-2026-01",
+    "image_url": "https://cdn.example.com/pins/backpack-vertical-1000x1500.jpg",
+    "link": "https://tengry.store/products/leather-backpack",
+    "board_id": "",
+    "topic": "кожаный рюкзак для города",
+    "product": "Минималистичный кожаный рюкзак, 15 л, отделение под ноутбук",
+    "audience": "женщины 25-40, город, работа и учёба",
+    "keywords": ["кожаный рюкзак", "городской рюкзак", "рюкзак для ноутбука"],
+    "priority": 10,
+    "not_before": "2026-01-10T09:00:00Z"
+  },
+  {
+    "id": "backpack-2026-02",
+    "image_url": "https://cdn.example.com/pins/backpack-outfit-1000x1500.jpg",
+    "link": "https://tengry.store/products/leather-backpack",
+    "topic": "образ с кожаным рюкзаком на осень",
+    "keywords": ["осенний образ", "капсульный гардероб"],
+    "title": "Осенний образ с кожаным рюкзаком",
+    "description": "Три способа носить кожаный рюкзак осенью.",
+    "hashtags": ["осеннийобраз", "кожаныйрюкзак"],
+    "priority": 20
+  }
+]
